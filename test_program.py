@@ -50,3 +50,17 @@ print("TEST 3: Sending a bad request (records is missing)")
 response = requests.post(URL, json={"status_field": "done"})
 print("Status code: " + str(response.status_code))
 print("Error message: " + response.json()["error"])
+
+
+# ---------- Test 4: a missing status field ----------
+print("")
+print("TEST 4: Sending a record without a done field")
+
+response = requests.post(URL, json={
+    "records": [{"done": True}, {"title": "Quiz"}, {"done": False}],
+    "status_field": "done",
+})
+
+print("Status code: " + str(response.status_code))
+print("Response: " + str(response.json()))
+
